@@ -16,10 +16,4 @@ public class FirstController {
     public String mapDisplay(Model model) {
         return "map";
     }
-
-    @GetMapping("/bye")
-    public String seeYouNext(Model model) {
-        model.addAttribute("nickname", "지팡이");
-        return "goodbye";
-    }
 }
