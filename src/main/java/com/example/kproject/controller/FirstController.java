@@ -11,4 +11,9 @@ public class FirstController {
         model.addAttribute("username", "지팡이");
         return "greetings";
     }
+
+    @GetMapping("/ch")
+    public String niceToMeetChang(Model model) {
+        return "chang";
+    }
 }
