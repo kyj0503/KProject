@@ -11,9 +11,4 @@ public class FirstController {
         model.addAttribute("username", "지팡이");
         return "greetings";
     }
-
-    @GetMapping("/map")
-    public String mapDisplay(Model model) {
-        return "map";
-    }
 }
