@@ -1,0 +1,19 @@
+{{>layouts/header}}
+
+<link rel="stylesheet" href="/css/map.css">
+
+<!-- 지도 영역 -->
+<div class="map-container">
+    <div id="map"></div>
+</div>
+
+<!-- 사진 업로드 섹션 -->
+<div class="upload-section">
+    <button class="upload-btn">📷 흡연 구역 제보하기 </button>
+    <input type="file" id="file-upload" accept="/image/*" style="display: none;">
+</div>
+
+{{>layouts/footer}}
+
+<script src="http://dapi.kakao.com/v2/maps/sdk.js?appkey=d9719e3b0915cc617ce003f3e0681cb8"></script>
+<script src="scripts/map.js"></script>

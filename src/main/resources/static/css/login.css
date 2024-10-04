@@ -1,0 +1,57 @@
+#login-container * { padding: 0; margin: 0; }
+
+#login-container html, #login-container body {
+    height: 100%;
+    background: #ffffff;
+}
+
+#login-container #container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#login-container #loginBox {
+    width: 300px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+#login-container .input-form-box {
+    border: 0px solid #ff0000;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+#login-container .input-form-box > span {
+    display: block;
+    text-align: left;
+    padding-top: 5px;
+    min-width: 65px;
+}
+
+#login-container .button-login-box {
+    margin: 10px 0;
+}
+
+#login-container #loginBoxTitle {
+    color: #000000;
+    font-weight: bold;
+    font-size: 32px;
+    text-transform: uppercase;
+    padding: 5px;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, #270a09, #8ca6ce);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#login-container #inputBox {
+    margin: 10px;
+}
+
+#login-container #inputBox button {
+    padding: 3px 5px;
+}

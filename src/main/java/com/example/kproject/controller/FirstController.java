@@ -6,14 +6,37 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class FirstController {
-    @GetMapping("/hi")
-    public String niceToMeetYou(Model model) {
-        model.addAttribute("username", "지팡이");
-        return "greetings";
+
+    @GetMapping("")
+    public String mapPage(Model model) {
+        return "mapPage";
     }
 
-    @GetMapping("/ch")
-    public String niceToMeetChang(Model model) {
-        return "chang";
+    @GetMapping("/login")
+    public String loginPage(Model model) {
+        return "loginPage";
+    }
+
+    @GetMapping("/signin")
+    public String signinPage(Model model) {
+        return "signinPage";
+    }
+
+    @GetMapping("/my")
+    public String myPage(Model model) {
+        return "myPage";
+    }
+
+    @GetMapping("/leaderboard")
+    public String leaderboardPage(Model model) { return "leaderboardPage"; }
+
+    @GetMapping("/report")
+    public String reportPage(Model model) {
+        return "reportPage";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(Model model) {
+        return "adminPage";
     }
 }
