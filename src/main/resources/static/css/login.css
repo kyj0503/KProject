@@ -1,16 +1,8 @@
-#login-container * { padding: 0; margin: 0; }
-
-#login-container html, #login-container body {
-    height: 100%;
-    background: #ffffff;
-}
-
-#login-container #container {
+#login-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+    height: calc(100vh - 10px); /* 네비게이션 바를 제외한 전체 높이 */
 }
 
 #login-container #loginBox {
