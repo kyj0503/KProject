@@ -1,0 +1,5 @@
+nav {
+  display: flex;
+  justify-content: space-between; /* 헤더 요소 간격 */
+  align-items: center; /* 정렬 */
+}
