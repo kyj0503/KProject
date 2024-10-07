@@ -2,14 +2,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     var mapContainer = document.getElementById('map'),
         mapOption = {
-            center: new kakao.maps.LatLng(37.5665, 126.9780),
+            center: new kakao.maps.LatLng(37.49821257, 126.8670887),
             level: 3
         };
 
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
     // 마커 설정 (선택사항)
-    var markerPosition  = new kakao.maps.LatLng(37.5665, 126.9780);
+    var markerPosition  = new kakao.maps.LatLng(37.49821257, 126.8670887);
     var marker = new kakao.maps.Marker({
         position: markerPosition
     });
