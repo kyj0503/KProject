@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="height=device-height,
+	width=device-width, initial-scale=1.0,
+	minimum-scale=1.0, maximum-scale=1.0,
+	user-scalable=no">
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoApiKey}}"></script>
 
     <style>
+        header {
+            display: flex;
+            justify-content: center; /* 가운데 정렬 */
+            align-items: center;
+            background-color: #ffffff; /* 배경색 하얗게 */
+            padding: 20px 0; /* 상하 패딩 추가 */
+        }
+
+        .logo {
+            font-size: 84px; /* 세 배로 키우기 */
+            font-weight: bold; /* 두꺼운 글씨체 */
+            font-family: 'Poppins', sans-serif; /* 굴곡 있는 글씨체 */
+            color: #007BFF; /* 푸른색 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+        }
+
         /* 기본 레이아웃 */
         .container {
             display: flex;
@@ -44,7 +63,7 @@
         /* 도어 - 모바일용 */
         .door-mobile {
             position: fixed;
-            bottom: -100%;
+            bottom: 0;
             left: 0;
             width: 100%;
             background-color: #444;
@@ -52,25 +71,26 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: bottom 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;
+            transform: translateY(100%);
             color: white;
             z-index:2;
         }
 
         /* 도어 - 웹용 */
         .door-desktop {
-            position: fixed;
-            top: 0;
-            right: 0; /* 오른쪽에서 시작하도록 설정 */
+            position: absolute;
+            top: 70;
+            left: 0; /* 오른쪽에서 시작하도록 설정 */
             width: 200px;
-            height: 100vh;
+            height: calc(100vh - 70px);
             background-color: #444;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             transition: transform 0.3s ease-in-out;
-            transform: translateX(100%); /* 오른쪽 바깥에서 시작 */
+            transform: translateX(-100%); /* 오른쪽 바깥에서 시작 */
             color: white;
             z-index: 2; /* z-index 설정 */
         }
@@ -94,19 +114,20 @@
 
         /* 도어 열림 상태 */
         .door-mobile.open {
-            bottom: 50px; /* 하단 네비게이션 바 위 */
+            /* 하단 네비게이션 바 위 */
+            transform: translateY(-80px);
         }
         /* 도어 열림 상태 */
         .door-desktop.open {
             z-index: 1;
-            transform: translateX(-80px); /* 도어가 열린 상태에서 왼쪽으로 200px 이동 */
+            transform: translateX(80px); /* 도어가 열린 상태에서 왼쪽으로 200px 이동 */
         }
 
 
         /* 화면이 넓을 때 레이아웃 */
-        @media (min-width: 400px) {
+        @media (min-width: 767px) {
             .container {
-                flex-direction: row;
+                flex-direction: row-reverse;
             }
             .fixed-sidebar {
                 width: 50px;
@@ -120,7 +141,7 @@
         }
 
         /* 모바일 화면에서 데스크탑용 도어 숨기기 */
-        @media (max-width: 599px) {
+        @media (max-width: 767px) {
             .door-desktop {
                 display: none;
             }
@@ -128,8 +149,13 @@
     </style>
 </head>
 <body>
+<header>
+    <div class="logo">로고</div>
 
+</header>
 <div class="container">
+
+
     <!-- 지도 공간 -->
     <div id="map" style="width:100%;height:100%;"></div>
     <!-- 마커 데이터를 JSON 문자열로 변환해서 히든 input 태그로 전달 -->
@@ -139,10 +165,10 @@
     <!-- 네비게이션 바 -->
     <div class="fixed-sidebar">
         <div class="star-btn" onclick="toggleDoor()">★</div>
-        <div class="menu-item">평점 순</div>
-        <div class="menu-item">거리 순</div>
-        <div class="menu-item">추가</div>
-        <div class="menu-item">마이페이지</div>
+        <div class="menu-item"onclick="toggleDoor('pathFinding')">경로 탐색</div>
+        <div class="menu-item">즐겨찾기</div>
+        <div class="menu-item">리뷰 추가</div>
+        <div class="menu-item">로그인</div>
     </div>
 
     <!-- 모바일용 도어 메뉴 -->
@@ -158,21 +184,69 @@
         <div class="menu-item">카페 2</div>
         <div class="menu-item">TEXT</div>
     </div>
+
 </div>
+
+
 
 <script>
     // 도어 토글 함수
-    function toggleDoor() {
-        const isMobile = window.innerWidth < 600;
+    let currentDoor = ''; // 현재 열려 있는 도어를 추적하는 변수
+
+    function toggleDoor(type) {
+        const isMobile = window.innerWidth < 767;
         const doorMobile = document.getElementById('door-mobile');
         const doorDesktop = document.getElementById('door-desktop');
 
+        // 모바일 도어 상태 체크
         if (isMobile) {
-            doorMobile.classList.toggle('open');
+            if (currentDoor === 'mobile') {
+                doorMobile.classList.remove('open'); // 현재 열린 도어 닫기
+                currentDoor = ''; // 현재 도어 초기화
+            } else {
+                // 도어의 내용을 변경
+                if (type === 'pathFinding') {
+                    doorMobile.innerHTML = `
+                    <div class="menu-item">경로 탐색 - 카페 1</div>
+                    <div class="menu-item">경로 탐색 - 카페 2</div>
+                    <div class="menu-item">다른 장소</div>
+                `;
+                } else {
+                    doorMobile.innerHTML = `
+                    <div class="menu-item">카페 1</div>
+                    <div class="menu-item">카페 2</div>
+                    <div class="menu-item">TEXT</div>
+                `;
+                }
+                doorMobile.classList.add('open'); // 도어 열기
+                currentDoor = 'mobile'; // 현재 도어 상태 업데이트
+            }
         } else {
-            doorDesktop.classList.toggle('open');
+            // 데스크탑 도어 상태 체크
+            if (currentDoor === 'desktop') {
+                doorDesktop.classList.remove('open'); // 현재 열린 도어 닫기
+                currentDoor = ''; // 현재 도어 초기화
+            } else {
+                // 도어의 내용을 변경
+                if (type === 'pathFinding') {
+                    doorDesktop.innerHTML = `
+                    <div class="menu-item">경로 탐색 - 카페 1</div>
+                    <div class="menu-item">경로 탐색 - 카페 2</div>
+                    <div class="menu-item">다른 장소</div>
+                `;
+                } else {
+                    doorDesktop.innerHTML = `
+                    <div class="menu-item">카페 1</div>
+                    <div class="menu-item">카페 2</div>
+                    <div class="menu-item">TEXT</div>
+                `;
+                }
+                doorDesktop.classList.add('open'); // 도어 열기
+                currentDoor = 'desktop'; // 현재 도어 상태 업데이트
+            }
         }
     }
+
 </script>
 
 </body>

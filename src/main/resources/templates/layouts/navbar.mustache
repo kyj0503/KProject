@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고정된 네비게이션 바와 도어</title>
+    <style>
+        /* 전체 레이아웃 */
+        .container {
+            display: flex;
+        }
+
+        /* 고정된 네비게이션 바 */
+        .fixed-sidebar {
+            width: 50px;
+            height: 100vh;
+            background-color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+        }
+
+        /* 도어 컨테이너 */
+        .door {
+            width: 0;
+            height: 100vh;
+            background-color: #444;
+            overflow: hidden; /* 글자 미리 보임 방지 */
+            transition: width 0.3s;
+            position: relative;
+        }
+
+        /* 도어 열렸을 때 너비 */
+        .door.open {
+            width: 200px;
+        }
+
+        /* 메뉴 아이템 숨김 */
+        .menu-item {
+            opacity: 0;
+            transition: opacity 0.3s ease; /* 페이드 효과 추가 */
+            padding: 15px;
+            color: white;
+            font-size: 18px;
+            border-top: 1px solid #666;
+            text-align: center;
+        }
+
+        /* 도어가 열렸을 때 글자 보임 */
+        .door.open .menu-item {
+            opacity: 1;
+            transition-delay: 0.3s; /* 도어가 열린 후 글자 표시 */
+        }
+
+        /* 별 버튼 */
+        .star-btn {
+            background-color: #555;
+            color: white;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* 지도 스타일 */
+        .map {
+            flex: 1;
+            height: 100vh;
+            background-image: url('https://via.placeholder.com/600x600');
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- 고정된 네비게이션 바 -->
+    <div class="fixed-sidebar">
+        <div class="star-btn" onclick="toggleDoor()">★</div>
+        <div class="menu-item">My</div>
+    </div>
+
+    <!-- 도어 영역 -->
+    <div class="door" id="door">
+        <div class="menu-item">카페 1</div>
+        <div class="menu-item">카페 2</div>
+        <div class="menu-item">카페 3</div>
+    </div>
+
+    <!-- 지도 영역 -->
+    <div class="map"></div>
+</div>
+
+<script>
+    // 도어 토글 함수
+    function toggleDoor() {
+        const door = document.getElementById('door');
+        door.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>
