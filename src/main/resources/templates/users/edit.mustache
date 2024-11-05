@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+<body>
+<h2>Edit User</h2>
+<form action="/users/edit/{{userId}}" method="post">
+    <label>Username:</label>
+    <input type="text" name="username" value="{{username}}" required><br>
+    <label>Password:</label>
+    <input type="password" name="password" required><br>
+    <label>Email:</label>
+    <input type="email" name="email" value="{{email}}" required><br>
+    <button type="submit">Save Changes</button>
+</form>
+</body>
+</html>

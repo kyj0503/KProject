@@ -1,37 +1,29 @@
 package com.example.kproject.service;
 
 import com.example.kproject.entity.Review;
-import com.example.kproject.entity.User;
 import com.example.kproject.repository.ReviewRepository;
-import com.example.kproject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
 public class ReviewService {
-
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    public List<Review> getAllReviews() {
+        return reviewRepository.findAll();
+    }
 
-    public Review saveReview(Double latitude, Double longitude, String username, int rating, String comment) {
-        User user = userRepository.findByUsername(username);
+    public Review getReviewById(Integer id) {
+        return reviewRepository.findById(id).orElse(null);
+    }
 
-        Review review = new Review();
-        review.setLatitude(latitude);
-        review.setLongitude(longitude);
-        review.setUser(user);
-        review.setRating(rating);
-        review.setComment(comment);
-
+    public Review saveReview(Review review) {
         return reviewRepository.save(review);
     }
 
-    public List<Review> getAllReviewsSortedByRating() {
-        return reviewRepository.findAllByOrderByRatingDesc();
+    public void deleteReview(Integer id) {
+        reviewRepository.deleteById(id);
     }
 }

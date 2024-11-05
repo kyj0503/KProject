@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>User 목록</title>
+</head>
+<body>
+<h2>Users</h2>
+<a href="/users/create">Create New User</a>
+<ul>
+    {{#users}}
+        <li>{{username}} - {{email}} -
+            <a href="/users/edit/{{userId}}">Edit</a> -
+            <a href="/users/delete/{{userId}}">Delete</a>
+        </li>
+    {{/users}}
+</ul>
+</body>
+</html>

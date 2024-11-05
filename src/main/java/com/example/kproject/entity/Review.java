@@ -1,32 +1,28 @@
 package com.example.kproject.entity;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;
+    private Integer reviewId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @Column(nullable = false)
-    private Double latitude;
+    @ManyToOne
+    @JoinColumn(name = "placeId", nullable = false)
+    private Place place;
 
-    @Column(nullable = false)
-    private Double longitude;
-
-    @Column(nullable = false)
-    private int rating;
-
-    @Column(columnDefinition = "TEXT")
+    private Integer rating;
     private String comment;
 
-    @Column(name = "created_at", updatable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    @Column(nullable = false, updatable = false)
+    private java.sql.Timestamp createdAt;
 }
-

@@ -15,6 +15,7 @@ public class MapController {
 
     @GetMapping("/")
     public String showMap(Model model) {
+        // Kakao API 키와 검색 키워드를 모델에 추가하여 템플릿에 전달
         model.addAttribute("kakaoApiKey", kakaoApiKey);
         model.addAttribute("keyword", DEFAULT_KEYWORD);
         return "map";

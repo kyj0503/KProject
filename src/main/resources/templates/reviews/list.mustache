@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Review 목록</title>
+</head>
+<body>
+<h2>Reviews</h2>
+<a href="/reviews/create">Create New Review</a>
+<ul>
+    {{#reviews}}
+        <li>User {{user.username}} - Place {{place.name}} - Rating: {{rating}} -
+            <a href="/reviews/edit/{{reviewId}}">Edit</a> -
+            <a href="/reviews/delete/{{reviewId}}">Delete</a>
+        </li>
+    {{/reviews}}
+</ul>
+</body>
+</html>
