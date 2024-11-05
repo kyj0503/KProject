@@ -1,179 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoApiKey}}"></script>
-
-    <style>
-        /* 기본 레이아웃 */
-        .container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            background-color: #f8f8f8; /* 배경색을 연한 색으로 변경 */
-        }
-
-        /* 지도 공간 */
-        .map {
-            flex: 1;
-            background-image: url('https://map.naver.com');
-            background-size: cover;
-            z-index: 1;
-        }
-
-        /* 하단 네비게이션 바 */
-        .fixed-sidebar {
-            display: flex;
-            justify-content: center; /* 가운데 정렬 */
-            align-items: center;
-            background-color: #ffffff; /* 배경색을 화이트로 변경 */
-            color: #333; /* 글자 색상을 어두운 회색으로 변경 */
-            height: 50px;
-            position: relative; /* 하단에 고정할 수 있도록 설정 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-            z-index: 3; /* z-index를 추가하여 도어보다 위에 위치하게 설정 */
-        }
-
-        /* 별 버튼 */
-        .star-btn {
-            font-size: 32px; /* 크기 증가 */
-            cursor: pointer;
-            margin: 0 10px; /* 여백 추가 */
-        }
-
-        /* 도어 - 모바일용 */
-        .door-mobile {
-            position: fixed;
-            bottom: -100%;
-            left: 0;
-            width: 100%;
-            background-color: #444;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: bottom 0.3s ease-in-out;
-            color: white;
-            z-index:2;
-        }
-
-        /* 도어 - 웹용 */
-        .door-desktop {
-            position: fixed;
-            top: 0;
-            right: 0; /* 오른쪽에서 시작하도록 설정 */
-            width: 200px;
-            height: 100vh;
-            background-color: #444;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(100%); /* 오른쪽 바깥에서 시작 */
-            color: white;
-            z-index: 2; /* z-index 설정 */
-        }
-
-        /* 메뉴 아이템 */
-        .menu-item {
-            margin: 10px 0;
-            padding: 15px; /* 패딩을 늘려서 박스 크기 증가 */
-            background-color: #e0e0e0; /* 아이템 배경색을 연한 회색으로 변경 */
-            width: 80%;
-            text-align: center;
-            border-radius: 5px;
-            font-size: 18px; /* 글씨 크기 증가 */
-            transition: background-color 0.3s; /* 호버 효과를 부드럽게 전환 */
-        }
-
-        /* 메뉴 아이템 호버 효과 */
-        .menu-item:hover {
-            background-color: #d0d0d0; /* 호버 시 배경색 변경 */
-        }
-
-        /* 도어 열림 상태 */
-        .door-mobile.open {
-            bottom: 50px; /* 하단 네비게이션 바 위 */
-        }
-        /* 도어 열림 상태 */
-        .door-desktop.open {
-            z-index: 1;
-            transform: translateX(-80px); /* 도어가 열린 상태에서 왼쪽으로 200px 이동 */
-        }
-
-
-        /* 화면이 넓을 때 레이아웃 */
-        @media (min-width: 400px) {
-            .container {
-                flex-direction: row;
-            }
-            .fixed-sidebar {
-                width: 50px;
-                height: 100vh;
-                flex-direction: column;
-                position: static; /* 데스크탑에서는 상대적 위치로 변경 */
-            }
-            .door-mobile {
-                display: none; /* 웹 화면에서는 숨김 */
-            }
-        }
-
-        /* 모바일 화면에서 데스크탑용 도어 숨기기 */
-        @media (max-width: 599px) {
-            .door-desktop {
-                display: none;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오 지도</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoApiKey}}&libraries=services"></script>
 </head>
 <body>
-
 <div class="container">
-    <!-- 지도 공간 -->
-    <div id="map" style="width:100%;height:100%;"></div>
-    <!-- 마커 데이터를 JSON 문자열로 변환해서 히든 input 태그로 전달 -->
-    <input type="hidden" id="markers-data" value='{{{markers}}}'>
-    <script type="text/javascript" src="/js/map.js"></script>
+    <input type="hidden" id="keyword-data" value="{{keyword}}">
+    <div id="map" class="map">지도</div>
+    <script src="/js/map.js"></script>
+    <div class="buttons">
+        <button onclick="displayMapCenter()">현재 위치</button>
+        <button>이 위치에서 다시 검색</button>
 
-    <!-- 네비게이션 바 -->
-    <div class="fixed-sidebar">
-        <div class="star-btn" onclick="toggleDoor()">★</div>
-        <div class="menu-item">평점 순</div>
-        <div class="menu-item">거리 순</div>
-        <div class="menu-item">추가</div>
-        <div class="menu-item">마이페이지</div>
-    </div>
+        {{#isLoggedIn}}
+            <button onclick="location.href='/logout'">로그아웃</button>
+        {{/isLoggedIn}}
+        {{^isLoggedIn}}
+            <button onclick="location.href='/login'">로그인</button>
+            <button onclick="location.href='/users/create'">회원가입</button>
+        {{/isLoggedIn}}
 
-    <!-- 모바일용 도어 메뉴 -->
-    <div class="door-mobile" id="door-mobile">
-        <div class="menu-item">카페 1</div>
-        <div class="menu-item">카페 2</div>
-        <div class="menu-item">TEXT</div>
-    </div>
-
-    <!-- 웹용 도어 메뉴 -->
-    <div class="door-desktop" id="door-desktop">
-        <div class="menu-item">카페 1</div>
-        <div class="menu-item">카페 2</div>
-        <div class="menu-item">TEXT</div>
+        <button>리뷰 작성</button>
+        <button>평점 작성</button>
+        <button>평점 순 나열</button>
+        <button>경로 탐색</button>
     </div>
 </div>
-
-<script>
-    // 도어 토글 함수
-    function toggleDoor() {
-        const isMobile = window.innerWidth < 600;
-        const doorMobile = document.getElementById('door-mobile');
-        const doorDesktop = document.getElementById('door-desktop');
-
-        if (isMobile) {
-            doorMobile.classList.toggle('open');
-        } else {
-            doorDesktop.classList.toggle('open');
-        }
-    }
-</script>
-
 </body>
 </html>

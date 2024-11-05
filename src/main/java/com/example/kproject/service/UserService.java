@@ -15,16 +15,16 @@ public class UserService {
     private UserRepository userRepository;
 
     // 로그인 인증 메서드
-    public Optional<String> authenticate(String username, String password) {
+    public String authenticate(String username, String password) {
         Optional<User> user = userRepository.findByUsername(username);
 
         if (user.isEmpty()) {
-            return Optional.of("아이디가 틀렸다!"); // 아이디가 존재하지 않는 경우
+            return "아이디가 틀렸습니다!";
         } else if (!user.get().getPassword().equals(password)) {
-            return Optional.of("비밀번호가 틀렸다!"); // 비밀번호가 일치하지 않는 경우
+            return "비밀번호가 틀렸습니다!";
         }
 
-        return Optional.empty(); // 로그인 성공
+        return null; // 로그인 성공
     }
 
     // 모든 사용자 조회
