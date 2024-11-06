@@ -26,4 +26,3 @@ public class User {
     @Column(nullable = false, updatable = false)
     private java.sql.Timestamp createdAt;
 }
-
