@@ -30,5 +30,27 @@
         <button>경로 탐색</button>
     </div>
 </div>
+<!-- 사용자 입력 필드 추가코드  <윤상-->
+<div class="container">
+    <div id="map" class="map"></div>
+    <div class="buttons">
+        <input type="text" id="start" placeholder="출발지" />
+        <input type="text" id="end" placeholder="도착지" />
+        <button onclick="findRoute()">경로 탐색</button>
+        <button onclick="setMapCenterByUserLocation()">현재 위치</button>
+    </div>
+</div>
+<!-- 지도 SDK연동 서울버전 -->
+<div id="map"></div>
+<script>
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+        center: new kakao.maps.LatLng(37.5665, 126.9780), // 서울 중심 좌표
+        level: 3 // 확대 레벨
+    };
+
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+</script>
+
 </body>
 </html>

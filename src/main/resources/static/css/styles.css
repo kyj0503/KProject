@@ -36,3 +36,40 @@ body {
     cursor: pointer;
     font-size: 16px;
 }
+
+/* 추가된 부분 사용자 ul보완 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.map {
+    width: 800px;
+    height: 600px;
+    border: 1px solid #000;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.buttons input {
+    width: 300px;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.buttons button {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #000;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    font-size: 16px;
+}
+

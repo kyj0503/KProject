@@ -82,3 +82,127 @@ document.addEventListener("DOMContentLoaded", function () {
         homeDisplay.innerText = "현재 지도 중심 좌표:\n위도: " + center.getLat().toFixed(6) + ", 경도: " + center.getLng().toFixed(6);
     }
 });
+
+// 경로 탐색 기능 추가 < 윤상
+document.addEventListener("DOMContentLoaded", function () {
+    const mapContainer = document.getElementById('map');
+    const mapOption = {
+        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 초기 중심 좌표
+        level: 3 // 확대 레벨
+    };
+    const map = new kakao.maps.Map(mapContainer, mapOption);
+    const markers = [];
+    const directionsUrl = "https://apis-navi.kakaomobility.com/v1/directions";
+
+    // REST API Key
+    const REST_API_KEY = "YOUR_REST_API_KEY";
+
+    // 사용자 위치로 지도 중심 설정
+    setMapCenterByUserLocation();
+
+    window.setMapCenterByUserLocation = function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                const userLocation = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                map.setCenter(userLocation);
+            }, function () {
+                alert("위치 정보를 가져올 수 없습니다.");
+            });
+        } else {
+            alert("Geolocation을 지원하지 않는 브라우저입니다.");
+        }
+    };
+
+    // 경로 탐색
+    window.findRoute = async function () {
+        const startAddress = document.getElementById('start').value;
+        const endAddress = document.getElementById('end').value;
+
+        if (!startAddress || !endAddress) {
+            alert("출발지와 도착지를 입력하세요.");
+            return;
+        }
+
+        try {
+            // 출발지와 도착지 주소를 좌표로 변환
+            const startCoords = await getCoordsFromAddress(startAddress);
+            const endCoords = await getCoordsFromAddress(endAddress);
+
+            // 경로 API 호출
+            const route = await getRoute(startCoords, endCoords);
+
+            if (route) {
+                displayRoute(route);
+            } else {
+                alert("경로를 찾을 수 없습니다.");
+            }
+        } catch (error) {
+            console.error(error);
+            alert("경로 탐색 중 문제가 발생했습니다.");
+        }
+    };
+
+    // 주소를 좌표로 변환
+    async function getCoordsFromAddress(address) {
+        return new Promise((resolve, reject) => {
+            const geocoder = new kakao.maps.services.Geocoder();
+            geocoder.addressSearch(address, function (result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                    resolve(coords);
+                } else {
+                    reject("주소 변환 실패");
+                }
+            });
+        });
+    }
+
+    // 경로 데이터를 REST API로 가져오기
+    async function getRoute(start, end) {
+        const response = await fetch(directionsUrl, {
+            method: "GET",
+            headers: {
+                Authorization: `KakaoAK ${REST_API_KEY}`
+            },
+            params: {
+                origin: `${start.getLng()},${start.getLat()}`,
+                destination: `${end.getLng()},${end.getLat()}`,
+                waypoints: "",
+                priority: "RECOMMEND"
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data.routes[0]; // 첫 번째 경로 반환
+        } else {
+            throw new Error("경로 데이터를 가져오는 데 실패했습니다.");
+        }
+    }
+
+    // 경로를 지도에 표시
+    function displayRoute(route) {
+        const linePath = route.sections.flatMap(section =>
+            section.roads.map(road => new kakao.maps.LatLng(road.latitude, road.longitude))
+        );
+
+        // 기존 마커와 경로 제거
+        markers.forEach(marker => marker.setMap(null));
+        markers.length = 0;
+
+        const polyline = new kakao.maps.Polyline({
+            path: linePath,
+            strokeWeight: 5,
+            strokeColor: '#0000ff',
+            strokeOpacity: 0.8,
+            map: map
+        });
+
+        polyline.setMap(map);
+
+        // 지도 중심과 확대 레벨 조정
+        const bounds = new kakao.maps.LatLngBounds();
+        linePath.forEach(coord => bounds.extend(coord));
+        map.setBounds(bounds);
+    }
+});
