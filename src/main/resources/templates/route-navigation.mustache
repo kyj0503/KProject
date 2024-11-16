@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경로 탐색</title>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b4f6b9f34acd35ee9c17e0b581351e5f&libraries=services"></script>
+    <link rel="stylesheet" href="/css/route-navigation.css">
+</head>
+<body>
+<div class="container">
+    <div id="map" class="map"></div>
+
+    <div class="input-section">
+        <div class="start-section">
+            <label for="start-input">출발지:</label>
+            <input type="text" id="start-input" placeholder="출발지를 입력하세요">
+            <button id="start-location">출발지 설정</button>
+        </div>
+        <div class="destination-section">
+            <label for="destination-input">도착지:</label>
+            <input type="text" id="destination-input" placeholder="도착지를 입력하세요">
+            <button id="destination">도착지 설정</button>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button id="current-location">현재 위치</button>
+        <button>이 위치에서 다시 검색</button>
+        <button id="find-route">경로 탐색</button>
+    </div>
+</div>
+
+<script src="/js/route-navigation.js"></script>
+</body>
+</html>

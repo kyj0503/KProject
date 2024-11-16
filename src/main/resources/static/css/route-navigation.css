@@ -1,0 +1,63 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.map {
+    width: 100%;
+    height: 60%; /* 지도 높이 설정 */
+}
+
+.top-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+
+.input-section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 요소 간 간격 */
+    margin-top: 20px;
+}
+
+.start-section, .destination-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; /* 입력 칸과 버튼 간 간격 */
+}
+
+label {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
