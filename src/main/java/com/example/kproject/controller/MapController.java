@@ -28,10 +28,6 @@ public class MapController {
         model.addAttribute("kakaoApiKey", kakaoApiKey);
         model.addAttribute("keyword", DEFAULT_KEYWORD);
 
-        // 세션에서 로그인 상태 확인
-        Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
-        model.addAttribute("isLoggedIn", isLoggedIn != null && isLoggedIn);
-
         return "map";  // 기본적으로 맵 화면을 반환
     }
 }

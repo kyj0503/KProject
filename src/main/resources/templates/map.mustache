@@ -14,8 +14,6 @@
     <script src="/js/map.js"></script>
     <div class="buttons">
         <button onclick="displayMapCenter()">현재 위치</button>
-        <button>이 위치에서 다시 검색</button>
-
         {{#isLoggedIn}}
             <button onclick="location.href='/logout'">로그아웃</button>
         {{/isLoggedIn}}
@@ -23,7 +21,6 @@
             <button onclick="location.href='/login'">로그인</button>
             <button onclick="location.href='/users/create'">회원가입</button>
         {{/isLoggedIn}}
-
         <button>리뷰 작성</button>
         <button>평점 작성</button>
         <button>평점 순 나열</button>
