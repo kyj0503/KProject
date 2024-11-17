@@ -12,16 +12,13 @@ public class RouteNavigationController {
 
     private static final Logger logger = LoggerFactory.getLogger(RouteNavigationController.class);
 
-    @Value("${kakao.api.key}")
+    @Value("${kakao.rest.api.key}")
     private String kakaoApiKey;
 
     @GetMapping("/route-navigation")
     public String showRouteNavigationPage(Model model) {
-        // 로그 기록
         logger.info("경로 탐색 페이지 호출됨");
-
-        // Kakao API 키를 템플릿으로 전달
-        model.addAttribute("kakaoApiKey", kakaoApiKey);
+        model.addAttribute("kakaoApiKey", kakaoApiKey); // API 키를 템플릿에 전달
         return "route-navigation"; // route-navigation.mustache 반환
     }
 }
