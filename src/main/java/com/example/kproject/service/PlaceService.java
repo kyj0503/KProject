@@ -26,4 +26,6 @@ public class PlaceService {
     public void deletePlace(Integer id) {
         placeRepository.deleteById(id);
     }
+
+    /////
 }
