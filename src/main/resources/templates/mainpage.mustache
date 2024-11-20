@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인페이지</title>
+    <title>카카오 지도</title>
     <link rel="stylesheet" href="/css/mainpage.css">
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoApiKey}}&libraries=services"></script>
 </head>
 <body>
-{{> header}}
-<main>
-    <div class="map-container">
-        <input type="hidden" id="keyword-data" value="{{keyword}}">
+{{>layouts/header}}
+<div class="container">
+    <input type="hidden" id="keyword-data" value="{{keyword}}">
+    <div id="map-container">
         <div id="map" class="map">지도</div>
-        <script src="/js/map.js"></script>
     </div>
-</main>
-{{> footer}}
+    <script src="/js/map.js"></script>
+</div>
+
+{{>layouts/footer}}
 </body>
 </html>

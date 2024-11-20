@@ -1,174 +1,84 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
-
-* {
-    box-sizing: border-box;
-}
-body {
-    font-family: "Montserrat", sans-serif;
+html, body {
+    height: 100%; /* html과 body의 높이를 100%로 설정 */
     margin: 0;
-    padding: 0;
-    background: url('path-to-your-image.jpg') no-repeat center center fixed; /* 배경 이미지 */
-    background-size: cover; /* 이미지가 화면을 덮도록 설정 */
+    font-family: Arial, sans-serif;
+    background-color: #faf7f7; /* 어두운 배경 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    flex-direction: column; /* 세로 레이아웃 설정 */
 }
 
-/* 추가적으로 wrapper에도 배경색이나 투명도를 변경하고 싶다면 */
-.wrapper {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(235, 236, 240, 0.9); /* 배경 투명도 추가 */
-    overflow: hidden;
-}
-.container {
+.login-container {
+    text-align: center;
+    background: #fff; /* 흰색 배경 */
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
-    position: absolute;
-    width: 768px;
-    min-height: 480px;
-    overflow: hidden;
-}
-form {
-    background: #ebecf0;
-    display: flex;
-    flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-form input {
-    background: #eee;
-    padding: 16px;
-    margin: 8px 0;
-    width: 85%;
-    border: 0;
-    outline: none;
-    border-radius: 20px;
-    box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff;
-}
-button {
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 15px 45px;
-    margin: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: transform 80ms ease-in;
-}
-.form_btn {
-    box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
-}
-.form_btn:active {
-    box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
-}
-.overlay_btn {
-    background-color: #ff4b2b;
-    color: #fff;
-    box-shadow: -5px -5px 10px #ff6b3f, 5px 5px 8px #bf4b2b;
-}
-.sign-in-container {
-    position: absolute;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    transition: all 0.5s;
-}
-.sign-up-container {
-    position: absolute;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    opacity: 0;
-    transition: all 0.5s;
-}
-.overlay-left {
-    display: flex;
-    flex-direction: column;
-    padding: 0 50px;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    opacity: 0;
-    background-color: #ff4b2b;
-    color: #fff;
-    transition: all 0.5s;
-}
-.overlay-right {
-    display: flex;
-    flex-direction: column;
-    padding: 0 50px;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background-color: #ff4b2b;
-    color: #fff;
-    transition: all 0.5s;
-}
-.container.right-panel-active .sign-in-container {
-    transform: translateX(100%);
-    opacity: 0;
-}
-.container.right-panel-active .sign-up-container {
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 2;
-}
-.container.right-panel-active .overlay-right {
-    transform: translateX(-100%);
-    opacity: 0;
-}
-.container.right-panel-active .overlay-left {
-    transform: translateX(-100%);
-    opacity: 1;
-    z-index: 2;
-}
-.social-links {
-    margin: 20px 0;
-}
-form h1 {
-    font-weight: bold;
-    margin: 0;
-    color: #000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* 폼 크기 확대 */
+    margin-top: 120px; /* header 높이에 맞춰 여백 추가 */
+    margin-bottom: 80px; /* footer 높이에 맞춰 여백 추가 */
 }
 
-p {
-    font-size: 16px;
+.service-name {
+    font-size: 28px;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
+    margin-bottom: 30px;
+    color: #333; /* 검은색 */
 }
-span {
-    font-size: 12px;
-    color: #000;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
+
+.login-form {
+    display: flex;
+    flex-direction: column;
 }
-.social-links div {
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 5px;
-    border-radius: 50%;
-    box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+
+.input-field {
+    margin-bottom: 20px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* 회색 테두리 */
+    border-radius: 5px;
+    background-color: #f5f5f5; /* 밝은 회색 배경 */
+    color: #faf9f9; /* 텍스트 색상 */
+}
+
+.input-field:focus {
+    border-color: #333; /* 포커스 시 검은색 테두리 */
+    outline: none;
+    background-color: #fff; /* 포커스 시 배경색 흰색으로 변경 */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-button, .login-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    flex: 1;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
 }
-.social-links a {
-    color: #000;
+
+.signup-button {
+    background-color: #e0e0e0; /* 밝은 회색 */
+    color: #333; /* 검은색 텍스트 */
 }
-.social-links div:active {
-    box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+
+.login-button {
+    background: linear-gradient(to right, #333, #555); /* 그라디언트 효과 */
+    color: #fff; /* 흰색 텍스트 */
+}
+
+.signup-button:hover {
+    background-color: #d6d6d6; /* hover 시 조금 더 어두운 회색 */
+}
+
+.login-button:hover {
+    background: linear-gradient(to right, #555, #333); /* hover 시 그라디언트 반전 */
 }
