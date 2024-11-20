@@ -28,6 +28,6 @@ public class MapController {
         model.addAttribute("kakaoApiKey", kakaoApiKey);
         model.addAttribute("keyword", DEFAULT_KEYWORD);
 
-        return "map";  // 기본적으로 맵 화면을 반환
+        return "mainpage";  // 기본적으로 맵 화면을 반환
     }
 }
