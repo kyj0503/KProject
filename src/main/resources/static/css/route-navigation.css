@@ -60,3 +60,52 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+.info-box {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cafe-box {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.cafe-box .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.cafe-box .btn {
+    padding: 8px 10px;
+    font-size: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-start {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-end {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-review {
+    background-color: #ffc107;
+    color: black;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
