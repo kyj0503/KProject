@@ -2,26 +2,23 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<h2>로그인</h2>
-{{#error}}
-    <p style="color: red;">{{error}}</p>
-{{/error}}
-<form action="/login" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br>
-
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br>
-
-    <button type="submit">로그인</button>
-</form>
-
-<!-- 회원가입 페이지로 이동하는 버튼 -->
-<button onclick="location.href='/users/create'">회원가입</button>
-
-<a href="/">메인으로 돌아가기</a>
+{{>layouts/header}}
+<div class="login-container">
+    <h1 class="service-name">cstudy</h1>
+    <form class="login-form">
+        <input type="text" class="input-field" placeholder="아이디" required>
+        <input type="password" class="input-field" placeholder="비밀번호" required>
+        <div class="button-group">
+            <button type="button" class="signup-button">회원가입</button>
+            <button type="submit" class="login-button">로그인</button>
+        </div>
+    </form>
+</div>
+{{>layouts/footer}}
 </body>
 </html>

@@ -1,35 +1,51 @@
-body {
+* {
+    box-sizing: border-box;
     margin: 0;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background: #f4f7fc;
-    color: #333;
+    padding: 0;
 }
-main {
-    flex: 1;
+
+
+.container {
+    width: 80%; /* 화면 가로의 80% */
+    margin: 0 auto; /* 가로 가운데 정렬 */
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* 내부 요소를 세로 정렬 */
     align-items: center;
-    background: #fff;
-    padding: 2rem;
-    box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* 남은 공간을 채우도록 설정 */
     box-sizing: border-box;
 }
 
+body {
+     margin: 0;
+     font-family: 'Roboto', sans-serif;
+     display: flex;
+     flex-direction: column;
+     min-height: 100vh; /* 화면 전체 높이를 채우도록 설정 */
+     background: #f4f7fc;
+     color: #333;
+     padding-top: 80px; /* header 높이를 고려한 여백 */
+     padding-bottom: 80px; /* footer 높이를 고려한 여백 */
+ }
+
+/* 지도 컨테이너 */
 #map-container {
-    width: 90%;
-    max-width: 800px;
-    height: 70%;
-    background: #e0f7fa;
+    width: 100%; /* 부모 요소에 맞춤 */
+    height: 80vh; /* 뷰포트의 60%를 차지하도록 설정 */
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 15px;
-    box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.1);
-    font-size: 1.5rem;
-    font-weight: 500;
-    text-align: center;
+    margin: 1rem 0; /* 상하 여백 */
+    box-sizing: border-box;
+}
+
+/* 실제 지도 */
+.map {
+    width: 100%; /* 부모 컨테이너(#map-container)의 너비에 맞춤 */
+    height: 100%; /* 부모 컨테이너 내에서 가득 차도록 설정 */
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
     box-sizing: border-box;
 }
