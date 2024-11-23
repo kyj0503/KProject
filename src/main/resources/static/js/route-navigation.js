@@ -104,8 +104,15 @@ document.getElementById('find-route').addEventListener('click', () => {
         return;
     }
 
-    // Directions API 호출
-    const directionsUrl = `https://apis-navi.kakaomobility.com/v1/directions?origin=${startCoords.getLng()},${startCoords.getLat()}&destination=${endCoords.getLng()},${endCoords.getLat()}&priority=shortest`;
+    // 좌표 인코딩
+    const startLat = encodeURIComponent(startCoords.getLat());
+    const startLng = encodeURIComponent(startCoords.getLng());
+    const endLat = encodeURIComponent(endCoords.getLat());
+    const endLng = encodeURIComponent(endCoords.getLng());
+
+    // Directions API 호출 기존에서 url변경됨
+    const directionsUrl = `http://localhost:8080/https://apis.kakao.com/v2/maps/directions.json?start=
+    ${startCoords.getLat()},${startCoords.getLng()}&destination=${endCoords.getLat()},${endCoords.getLng()}&priority=shortest`;
 
     fetch(directionsUrl, {
         method: "GET",
@@ -113,8 +120,14 @@ document.getElementById('find-route').addEventListener('click', () => {
             Authorization: "KakaoAK b4f6b9f34acd35ee9c17e0b581351e5f" // Kakao REST API 키
         }
     })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log(data);
             if (data.routes && data.routes.length > 0) {
                 const route = data.routes[0];
                 const path = route.sections.flatMap(section =>
@@ -127,7 +140,7 @@ document.getElementById('find-route').addEventListener('click', () => {
                     )
                 );
 
-                // 기존 Polyline 제거
+                // 기존 Polyline 제거 (있다면)
                 if (routePolyline) {
                     routePolyline.setMap(null);
                 }
@@ -139,7 +152,7 @@ document.getElementById('find-route').addEventListener('click', () => {
                     strokeColor: "#FF0000",
                     strokeOpacity: 0.8,
                     strokeStyle: "solid",
-                    map: map
+                    map: map // kakao map 객체
                 });
 
                 // 지도 범위 설정
