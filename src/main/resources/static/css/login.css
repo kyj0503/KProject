@@ -1,98 +1,84 @@
-body {
+html, body {
+    height: 100%; /* html과 body의 높이를 100%로 설정 */
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #faf7f7; /* 어두운 배경 */
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    flex-direction: column; /* 세로 레이아웃 설정 */
 }
 
 .login-container {
     text-align: center;
-    padding: 20px;
+    background: #fff; /* 흰색 배경 */
+    padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 50vh;
-    height: 70vh; /* 크기 조금 늘림 */
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px; /* 폼 크기 확대 */
+    margin-top: 120px; /* header 높이에 맞춰 여백 추가 */
+    margin-bottom: 80px; /* footer 높이에 맞춰 여백 추가 */
 }
 
 .service-name {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 20px;
-    color: #0056b3;
+    margin-bottom: 30px;
+    color: #333; /* 검은색 */
 }
 
-.login-form, .signup-form {
+.login-form {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    align-items: center;
 }
 
 .input-field {
-    margin-bottom: 15px;
-    padding: 10px;
+    margin-bottom: 20px;
+    padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* 회색 테두리 */
     border-radius: 5px;
-    width: 100%;
-    max-width: 300px;
+    background-color: #f5f5f5; /* 밝은 회색 배경 */
+    color: #faf9f9; /* 텍스트 색상 */
+}
+
+.input-field:focus {
+    border-color: #333; /* 포커스 시 검은색 테두리 */
+    outline: none;
+    background-color: #fff; /* 포커스 시 배경색 흰색으로 변경 */
 }
 
 .button-group {
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    max-width: 300px;
 }
 
 .signup-button, .login-button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     flex: 1;
-    margin: 0 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
 }
 
 .signup-button {
-    background-color: #e0e0e0;
-    color: #333;
+    background-color: #e0e0e0; /* 밝은 회색 */
+    color: #333; /* 검은색 텍스트 */
 }
 
 .login-button {
-    background-color: #0056b3;
-    color: white;
+    background: linear-gradient(to right, #333, #555); /* 그라디언트 효과 */
+    color: #fff; /* 흰색 텍스트 */
 }
 
 .signup-button:hover {
-    background-color: #d6d6d6;
+    background-color: #d6d6d6; /* hover 시 조금 더 어두운 회색 */
 }
 
 .login-button:hover {
-    background-color: #004494;
-}
-
-/* 회원가입 폼 숨기기 (기본 상태) */
-.signup-form {
-    display: none;
-}
-
-.home-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    font-weight: bold;
-    color: #0056b3;  /* 원하는 색상 */
-    cursor: pointer;
-    padding: 0;
+    background: linear-gradient(to right, #555, #333); /* hover 시 그라디언트 반전 */
 }

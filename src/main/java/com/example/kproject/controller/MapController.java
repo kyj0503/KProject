@@ -41,6 +41,6 @@ public class MapController {
         model.addAttribute("kakaoRestKey", kakaoRestKey);
         model.addAttribute("keyword", DEFAULT_KEYWORD);
 
-        return "map";
+        return "mainpage";  // 기본적으로 맵 화면을 반환
     }
 }

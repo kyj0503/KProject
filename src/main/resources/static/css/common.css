@@ -1,0 +1,84 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body 스타일 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    height: 100vh;
+    display: block; /* Flexbox를 제거하고 기본 블록 레이아웃 사용 */
+}
+
+/* 공통 컨테이너 스타일 */
+.container {
+    width: 80%; /* 화면 가로의 80% */
+    margin: 0 auto; /* 가로 가운데 정렬 */
+    display: flex;
+    flex-direction: column; /* 내부 요소를 세로 정렬 */
+    align-items: center;
+    flex-grow: 1; /* 남은 공간을 채우도록 설정 */
+    box-sizing: border-box;
+}
+
+/* 공통 header 스타일 */
+header {
+    background-color: #ffffff;
+    color: #333;
+    width: 80%; /* 가로 크기 80% */
+    padding: 15px;
+    text-align: center;
+    position: fixed; /* 상단에 고정 */
+    top: 0;
+    left: 10%; /* 왼쪽에서 10% 떨어지게 설정 */
+    right: 10%; /* 오른쪽에서 10% 떨어지게 설정 */
+    z-index: 10; /* 다른 요소 위에 오도록 설정 */
+    height: 80px; /* header 높이를 고정 */
+}
+
+/* header 내부 타이틀 스타일 */
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* footer 스타일 */
+footer {
+    background-color: #ffffff;
+    color: #333;
+    width: 80%; /* 가로 크기 80% */
+    padding: 15px;
+    text-align: center;
+    position: fixed; /* 하단에 고정 */
+    bottom: 0;
+    left: 10%; /* 왼쪽에서 10% 떨어지게 설정 */
+    right: 10%; /* 오른쪽에서 10% 떨어지게 설정 */
+    z-index: 10; /* 다른 요소 위에 오도록 설정 */
+    height: 80px; /* footer 높이를 고정 */
+    display: flex; /* 버튼들을 가로로 나열하기 위해 flex 사용 */
+    justify-content: space-between; /* 버튼 사이의 공간을 균등하게 배분 */
+    align-items: center; /* 수직으로 중앙 정렬 */
+}
+
+/* footer 버튼 스타일 */
+footer button {
+    width: 25%; /* 버튼의 너비를 footer 크기의 1/4로 설정 */
+    height: 40px; /* 버튼 높이 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    border: none;
+    background-color: #000000;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 버튼 hover 효과 */
+footer button:hover {
+    background-color: #6e747b;
+}
