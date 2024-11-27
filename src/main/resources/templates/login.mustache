@@ -2,34 +2,56 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<!-- 로그인 제목 -->
-<h2>로그인</h2>
 
 <!-- 서버에서 전달된 에러 메시지를 표시 -->
 {{#error}}
-    <p style="color: red;">{{error}}</p>
+    <p style="color: red; text-align: center;">{{error}}</p>
 {{/error}}
 
 <!-- 로그인 폼 -->
-<form action="/login" method="post">
-    <!-- 사용자 아이디 입력 -->
-    <label for="username">아이디:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
+<div class="login-container">
+    <div class="service-name">
+        <button class="home-btn" onclick="window.location.href='/'">
+            <h1>main</h1>
+        </button>
+    </div>
+    <!-- 로그인 폼 -->
+    <form class="login-form" action="/login" method="post">
+        <input type="text" id="username" name="username" class="input-field" placeholder="아이디" required>
+        <input type="password" id="password" name="password" class="input-field" placeholder="비밀번호" required>
+        <div class="button-group">
+            <!-- 회원가입 버튼 -->
+            <button type="button" class="signup-button">회원가입</button>
+            <!-- 로그인 버튼 -->
+            <button type="submit" class="login-button">로그인</button>
+        </div>
+    </form>
 
-    <!-- 사용자 비밀번호 입력 -->
-    <label for="password">비밀번호:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
+    <!-- 회원가입 폼 (숨겨져 있다가 회원가입 버튼 클릭 시 보이게) -->
+    <form class="signup-form" action="/users/create" method="post" style="display:none;">
+        <input type="text" id="username" name="username" class="input-field" placeholder="아이디" required>
+        <input type="password" id="password" name="password" class="input-field" placeholder="비밀번호" required>
+        <input type="email" id="email" name="email" class="input-field" placeholder="이메일" required>
+        <div class="button-group">
+            <button type="submit" class="signup-button">회원가입</button>
+        </div>
+    </form>
+</div>
 
-    <!-- 로그인 제출 버튼 -->
-    <button type="submit">로그인</button>
-</form>
+<script>
+    document.querySelector('.signup-button').addEventListener('click', function() {
+        const loginForm = document.querySelector('.login-form');
+        const signupForm = document.querySelector('.signup-form');
 
-<!-- 회원가입 페이지로 이동 링크 -->
-<a href="/users/create">회원가입</a>
+        loginForm.style.display = 'none'; // 로그인 폼 숨기기
+        signupForm.style.display = 'flex'; // 회원가입 폼 보이기
+    });
+</script>
+
 </body>
 </html>

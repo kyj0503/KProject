@@ -1,0 +1,109 @@
+/* 페이지 전체 기본 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5; /* 배경색 */
+    margin: 0;
+    padding: 0;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 1200px;
+    height: 80vh; /* 화면의 80% 높이로 제한 */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* 제목 스타일 */
+h1 {
+    color: #0056b3; /* 하늘색 */
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    flex-grow: 1; /* 테이블이 가능한 모든 공간을 차지하도록 설정 */
+}
+
+/* 테이블 헤더 스타일 */
+th {
+    background-color: #e6f7ff; /* 하늘색 배경 */
+    color: #333;
+    padding: 12px;
+    font-size: 18px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+/* 테이블 데이터 셀 스타일 */
+td {
+    padding: 12px;
+    font-size: 16px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+/* 테이블 행 hover 효과 */
+tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* 버튼 스타일 */
+.btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #0056b3; /* 파란색 */
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* 회색 */
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* 테이블 스크롤을 활성화 */
+.table-wrapper {
+    max-height: 400px; /* 최대 높이 설정 */
+    overflow-y: auto;  /* 세로 스크롤 허용 */
+    margin-top: 10px;  /* 테이블 위 공간 */
+}
+
+/* 작은 화면에서 버튼 크기 조정 */
+@media (max-width: 768px) {
+    .btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    table {
+        font-size: 14px;
+    }
+}

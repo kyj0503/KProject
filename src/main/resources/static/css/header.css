@@ -1,0 +1,90 @@
+/* 전체 헤더 스타일 */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #ffffff, #A7D8FF, #ffffff);  /* 파란색, 하늘색, 흰색 그라디언트 배경 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 부드러운 그림자 추가 */
+    width: 80%;  /* 헤더의 가로 크기 80%로 설정 */
+    margin: 0 auto;  /* 화면 중앙 정렬 */
+     /* 최대 너비를 1200px로 제한 */
+    min-width: 320px;  /* 최소 너비를 320px로 설정 (모바일 환경 고려) */
+}
+
+/* 좌측 영역 */
+.header-left {
+    flex: 1;
+}
+
+/* 중앙 영역 */
+.header-center {
+    flex: 2;
+    text-align: center;
+}
+
+/* 우측 영역 */
+.header-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* 로고 업로드 input 스타일 */
+.header-left input[type="file"] {
+    display: block;
+}
+
+/* 검색창 */
+.header-right input[type="text"] {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.header-right input[type="text"]:focus {
+    border-color: #4A90E2;
+}
+
+/* 검색 버튼 스타일 */
+.header-right .search-btn {
+    background-color: #4A90E2;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-right .search-btn:hover {
+    background-color: #357ABD;
+}
+
+.header-right .search-btn i {
+    font-size: 20px;
+}
+
+
+.home-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3;  /* 원하는 색상 */
+    cursor: pointer;
+    padding: 0;
+}
+
+home-btn:hover {
+    color: #007bff;  /* 호버 시 색상 변경 */
+}

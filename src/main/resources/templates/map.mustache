@@ -20,27 +20,14 @@
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoJsKey}}&libraries=services,drawing"></script>
 </head>
 <body>
-<!-- Bootstrap 컨테이너 -->
-<div class="container my-4">
-    <!-- 지도 영역 -->
-    <div class="map-container">
-        <div id="map" class="map">지도</div>
-    </div>
+{{>header}}
 
-    <!-- 버튼 영역 -->
-    <div class="buttons-container">
-        <div class="buttons">
-            <!-- 기능 버튼들 -->
-            <button class="btn btn-primary" onclick="location.href='/reviews/list'">평점순</button>
-            <button class="btn btn-primary" onclick="location.href='/navigation'">경로 탐색</button>
-            {{#isLoggedIn}}
-                <button class="btn btn-primary" onclick="location.href='/users/mypage'">마이페이지</button>
-                <button class="btn btn-primary" onclick="location.href='/logout'">로그아웃</button>
-            {{/isLoggedIn}}
-            {{^isLoggedIn}}
-                <button class="btn btn-primary" onclick="location.href='/login'">로그인</button>
-            {{/isLoggedIn}}
-        </div>
+<!-- Bootstrap 컨테이너 -->
+
+    <!-- 지도 영역 -->
+<div class="container-box">
+    <div class="content">
+        <div id="map" class="map">지도</div>
     </div>
 
     <!-- 키워드 데이터 -->
@@ -48,8 +35,9 @@
 
     <!-- 지도 관련 JavaScript -->
     <script src="/js/map.js"></script>
-</div>
+<div>
 
+{{>footer}} <!-- 버튼을 footer.mustache에서 불러오기 -->
 <!-- Bootstrap JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

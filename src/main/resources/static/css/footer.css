@@ -1,0 +1,39 @@
+/* 푸터 스타일 */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;  /* 화면의 중앙을 기준으로 */
+    width: 80%;  /* 웹 페이지 가로의 80%만 차지하도록 설정 */
+    background: linear-gradient(to right, #ffffff, #A7D8FF, #ffffff);  /* 파란색, 하늘색, 흰색 그라디언트 배경 */
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;  /* 글씨체 변경 */
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);  /* 상단에 부드러운 그림자 추가 */
+    transform: translateX(-50%);  /* 왼쪽으로 50% 이동시켜서 중앙에 배치 */
+   /* 최대 너비를 1200px로 제한 */
+    min-width: 320px;  /* 최소 너비를 320px로 설정 (모바일 환경 고려) */
+}
+
+/* 버튼 컨테이너 스타일 */
+.footer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;  /* 버튼 간격을 20px로 설정 */
+}
+
+/* 버튼 스타일 */
+.footer-buttons button {
+    background-color: #4A90E2;  /* 헤더와 동일한 파란색 */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;  /* 버튼 호버 효과 */
+}
+
+/* 버튼 호버 시 색상 변경 */
+.footer-buttons button:hover {
+    background-color: #357ABD;  /* 헤더의 버튼과 동일한 호버 색상 */
+}

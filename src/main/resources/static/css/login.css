@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 50vh;
+    height: 70vh; /* 크기 조금 늘림 */
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.service-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #0056b3;
+}
+
+.login-form, .signup-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.input-field {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+}
+
+.signup-button, .login-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.signup-button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.login-button {
+    background-color: #0056b3;
+    color: white;
+}
+
+.signup-button:hover {
+    background-color: #d6d6d6;
+}
+
+.login-button:hover {
+    background-color: #004494;
+}
+
+/* 회원가입 폼 숨기기 (기본 상태) */
+.signup-form {
+    display: none;
+}
+
+.home-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0056b3;  /* 원하는 색상 */
+    cursor: pointer;
+    padding: 0;
+}

@@ -1,39 +1,44 @@
-html,
-body {
+/* html, body 높이 100% 설정 */
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
+/* 지도 컨테이너 */
 .map-container {
-    width: 100%;
-    height: 75vh; /* 지도 높이 */
+    width: 80%;  /* 웹 페이지 가로의 80%만 차지 */
+    height: 50vh;  /* 지도 높이 수정 (50vh로 설정하여 화면의 절반 크기) */
     border: 1px solid #ccc;
+    margin: 20px auto;  /* 위 아래 마진, 중앙 정렬 */
 }
 
-.form-container {
-    margin-top: 20px;
-}
-
+/* 지도 */
 .map {
     width: 100%;
     height: 100%;
     border: 1px solid #000;
+    border-radius: 15px;  /* 둥근 테두리 추가 */
 }
 
-.buttons-container {
-    max-width: 800px;
-    margin: 20px auto;
+/* 지도 아래의 컨테이너 */
+.container-box {
+    width: 80%;  /* 웹 페이지 가로의 80% */
+    height: 80%;
+    margin: 20px auto;  /* 위 아래 마진, 중앙 정렬 */
+    padding: 20px;  /* 내부 여백 */
+    background: linear-gradient(to right, #4A90E2, #A7D8FF, #4A90E2); /* 헤더와 푸터의 색상톤 사용 */
+    border-radius: 10px;  /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* 부드러운 그림자 */
 }
 
-.buttons {
+/* 내부 콘텐츠 영역 */
+.container-box .content {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.buttons button {
-    min-width: 150px;
-    height: 40px;
+    align-items: center;  /* 수직 중앙 정렬 */
+    justify-content: center;  /* 수평 중앙 정렬 */
+    height: 100%;  /* 부모 요소(.container-box)의 전체 높이를 차지 */
+    font-family: 'Arial', sans-serif;
+    color: #333;  /* 텍스트 색상 */
+    text-align: center;
 }
