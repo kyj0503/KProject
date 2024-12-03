@@ -1,0 +1,75 @@
+/* 초기화 */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    background-color: #ffffff; /* 바탕색 흰색으로 고정 */
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    width: 100px; /* 사이드바 너비 */
+    background-color: #f5f5f5; /* 연한 회색 */
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* 사이드바가 항상 도어 위에 위치 */
+    position: relative;
+}
+
+/* 버튼 스타일 */
+.sidebar-btn {
+    width: 80px;
+    height: 80px;
+    margin: 10px 0;
+    background-color: #3498db; /* 파란색 */
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    position: relative;
+}
+
+.sidebar-btn:hover {
+    background-color: #5dade2; /* 밝은 파란색 */
+}
+
+/* 버튼 이미지 스타일 */
+.sidebar-btn img {
+    width: 50%; /* 버튼의 절반 크기 */
+    height: 50%;
+    object-fit: contain;
+}
+
+/* 로고 버튼 (1번) */
+.sidebar-btn.logo-btn {
+    background-color: #f5f5f5; /* 로고는 배경과 동일한 색 */
+    border: 1px solid #ccc; /* 구분을 위한 테두리 */
+}
+
+/* 도어 스타일 */
+.door {
+    position: absolute;
+    top: 0;
+    left: 100px; /* 초기 위치: 사이드바 오른쪽 끝과 붙음 */
+    width: 450px; /* 도어 크기를 1.5배로 확대 */
+    height: 100%;
+    background-color: #ffffff; /* 흰색 */
+    transition: transform 0.5s ease; /* 부드러운 열림/닫힘 효과 */
+    z-index: 1; /* 도어가 항상 사이드바 아래에 위치 */
+    transform: translateX(-100%); /* 초기에는 도어가 사이드바 내부에 숨겨짐 */
+    border-right: 1px solid #ccc; /* 옆면에 구분선을 추가 */
+}
+
+.door.open {
+    transform: translateX(0); /* 도어가 열리면 사이드바 오른쪽 끝과 붙음 */
+}

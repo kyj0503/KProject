@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>카카오 지도</title>
+    <title>카카오 지도 및 사이드바</title>
 
-    <!-- Bootstrap CSS 및 지도 스타일 시트 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 통합된 CSS -->
     <link rel="stylesheet" href="/css/map.css">
 
     <!-- JavaScript 변수 설정 -->
@@ -20,35 +19,59 @@
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoJsKey}}&libraries=services,drawing"></script>
 </head>
 <body>
-<div class="container my-4">
+<div class="layout">
+    <!-- 사이드바 -->
+        <div class="sidebar">
+            <button class="sidebar-btn">
+                <img src="/img/home.png" alt="홈">
+                <span>홈</span>
+            </button>
+
+
+            <button class="sidebar-btn">
+                <img src="/img/way.png" alt="경로 탐색">
+                <span>경로 탐색</span>
+            </button>
+
+            <button class="sidebar-btn">
+                <img src="/img/like.png" alt="평점순">
+                <span>평점순</span>
+            </button>
+{{#isLoggedIn}}
+                <button class="sidebar-btn">
+                    <img src="/img/mypage.png" alt="마이페이지">
+                    <span>마이페이지</span>
+                </button>
+{{/isLoggedIn}}
+{{^isLoggedIn}}
+
+            <button class="sidebar-btn">
+                <img src="/img/login.png" alt="로그인">
+                <span>로그인</span>
+            </button>
+{{/isLoggedIn}}
+    </div>
+
+    <!-- 도어 -->
+    <div class="door"></div>
+
     <!-- 지도 영역 -->
     <div class="map-container">
-        <div id="map" class="map">지도</div>
+        <div id="map" class="map"></div>
     </div>
-
-    <!-- 버튼 영역 -->
-    <div class="buttons-container">
-        <div class="buttons">
-            <!-- 기능 버튼들 -->
-            <button class="btn btn-primary" onclick="location.href='/reviews/list'">평점순</button>
-            <button class="btn btn-primary" onclick="location.href='/navigation'">경로 탐색</button>
-            {{#isLoggedIn}}
-                <button class="btn btn-primary" onclick="location.href='/users/mypage'">마이페이지</button>
-                <button class="btn btn-primary" onclick="location.href='/logout'">로그아웃</button>
-            {{/isLoggedIn}}
-            {{^isLoggedIn}}
-                <button class="btn btn-primary" onclick="location.href='/login'">로그인</button>
-            {{/isLoggedIn}}
-        </div>
-    </div>
-
-    <!-- 키워드 데이터 -->
     <input type="hidden" id="keyword-data" value="도서관">
-
 </div>
 
+
+
+
+
 <!-- JavaScript -->
+
 <script src="/js/map.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+
+

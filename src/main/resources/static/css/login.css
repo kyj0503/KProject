@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 위쪽 정렬 */
+    min-height: 100vh; /* 최소 높이를 100vh로 설정 */
+}
+
+.login-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 25px;
+    padding-left: 40px; /* 왼쪽 여백 추가 */
+    padding-right: 40px; /* 오른쪽 여백 추가 */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 360px;
+    position: relative; /* 위치 조정을 위한 상대 위치 */
+    margin-top: 20vh; /* 페이지 높이의 20% 지점에 위치 */
+}
+
+.service-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #0056b3;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 입력 필드와 버튼 간의 간격 추가 */
+}
+
+.input-field {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* 버튼 간의 간격 추가 */
+}
+
+.signup-button, .login-button {
+    padding: 12px 18px; /* 버튼 크기 증가 */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.signup-button {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.login-button {
+    background-color: #0056b3;
+    color: white;
+}
+
+.signup-button:hover {
+    background-color: #d6d6d6;
+}
+
+.login-button:hover {
+    background-color: #004494;
+}
