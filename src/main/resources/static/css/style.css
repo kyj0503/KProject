@@ -1,0 +1,56 @@
+/* 인포윈도우 컨테이너 스타일 */
+.infowindow-container {
+    padding: 10px !important;
+    font-size: 12px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    background-color: white !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+    text-align: center !important;
+    width: 250px; /* 인포윈도우의 고정된 너비 */
+}
+
+/* 제목 스타일 */
+.infowindow-title {
+    margin: 0 0 8px 0 !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    color: #007BFF !important;
+}
+
+/* 주소 스타일 */
+.infowindow-address {
+    margin: 0 0 12px 0 !important;
+    color: gray !important;
+    font-size: 12px !important;
+}
+
+/* 버튼들을 한 줄로 배치 */
+.infowindow-buttons {
+    display: flex; /* 버튼들을 가로로 나열 */
+    justify-content: space-between; /* 버튼들 간격 맞추기 */
+    margin-top: 10px;
+}
+
+/* 버튼 스타일 */
+.infowindow-btn {
+    padding: 8px 12px !important;
+    border: none !important;
+    background-color: #007BFF !important;
+    color: white !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 12px !important;
+    flex: 1; /* 버튼 크기 동일하게 */
+    margin-right: 8px; /* 버튼 간 간격 */
+}
+
+/* 마지막 버튼의 오른쪽 여백 제거 */
+.infowindow-btn:last-child {
+    margin-right: 0 !important;
+}
+
+/* 버튼 호버 효과 */
+.infowindow-btn:hover {
+    background-color: #0056b3 !important;
+}

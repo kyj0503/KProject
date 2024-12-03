@@ -80,18 +80,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         : result[0].address.address_name;
 
                     const content = `
-                    <div style="padding:5px;font-size:12px;">
-                        <p>${place.place_name}</p>
-                        <p>${address}</p>
-                        <button onclick="savePlaceToDatabase('${place.place_name}', '${address}', ${place.x}, ${place.y})">리뷰 남기기</button>
-                        <button onclick="getCarDirection(${place.y}, ${place.x})">경로 탐색</button>
-                        <button onclick="addFavorite('${place.place_name}', '${address}', ${place.x}, ${place.y})">즐겨찾기 추가</button>
-                    </div>`;
-                    infowindow.setContent(content); // 인포윈도우에 내용 설정
+            <div class="infowindow-container">
+                <p class="infowindow-title">${place.place_name}</p>
+                <p class="infowindow-address">${address}</p>
+                <div class="infowindow-buttons">
+                    <button class="infowindow-btn" onclick="savePlaceToDatabase('${place.place_name}', '${address}', ${place.x}, ${place.y})">리뷰 남기기</button>
+                    <button class="infowindow-btn" onclick="getCarDirection(${place.y}, ${place.x})">경로 탐색</button>
+                    <button class="infowindow-btn" onclick="addFavorite('${place.place_name}', '${address}', ${place.x}, ${place.y})">즐겨찾기 추가</button>
+                </div>
+            </div>`;
+
+                    infowindow.setContent(content); // 인포윈도우에 HTML 내용 설정
                     infowindow.open(map, marker); // 지도에 인포윈도우 열기
                     openInfoWindowMarker = marker; // 열린 인포윈도우의 마커 저장
                 }
             });
+
+
         });
     }
 
@@ -300,6 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         updateDoorContent(`
         <link rel="stylesheet" href="/css/search.css">
         <div class="search-container">
+        <br><br>
             <div class="search-box">
                 <input type="text" id="search-input" class="search-input" placeholder="검색어를 입력하세요">
                 <button id="search-button" class="search-button">🔍</button>
@@ -373,9 +379,11 @@ document.addEventListener("DOMContentLoaded", () => {
     <!-- 경로 설정 폼 -->
     <div class="form-container">
         <div class="mb-3">
+        <br>
             <label for="start-location" class="form-label">출발지</label>
             <input type="text" id="start-location" class="form-control" placeholder="출발지를 입력하거나 마커를 선택하세요">
         </div>
+        <br><br>
         <div class="mb-3">
             <label for="end-location" class="form-label">도착지</label>
             <input type="text" id="end-location" class="form-control" placeholder="도착지를 입력하거나 마커를 선택하세요">
@@ -383,7 +391,9 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
 
     <div class="buttons-container">
+    <br>
         <button class="btn btn-primary" onclick="calculateRoute()">경로 탐색</button>
+       
         <button class="btn btn-secondary" onclick="resetMap()">초기화</button>
     </div>
 

@@ -56,15 +56,14 @@ body {
 /* 버튼 그룹 */
 .button-group {
     display: flex;
-    justify-content: space-between; /* 버튼 간격 균등 분배 */
-    gap: 10px; /* 버튼 간 간격 */
+    justify-content: flex-start; /* 버튼들을 왼쪽 정렬 */
     width: 100%;
     margin-top: 20px; /* 검색 박스와 버튼 그룹 간격 */
 }
 
+/* 커스텀 버튼 스타일 */
 .custom-button {
-    flex: 1; /* 동일한 너비를 차지 */
-    padding: 10px;
+    padding: 8px 12px; /* 패딩을 줄여서 버튼 크기를 더 컴팩트하게 만듬 */
     font-size: 16px;
     background-color: #0056b3; /* 파란색 */
     color: #ffffff; /* 흰색 텍스트 */
@@ -72,6 +71,9 @@ body {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    width: auto; /* 버튼 너비가 텍스트 크기에 맞게 자동으로 조정되도록 설정 */
+    min-width: 80px; /* 최소 너비를 지정하여 너무 좁아지지 않도록 설정 */
+    margin-right: 10px; /* 버튼 간 간격 추가 */
 }
 
 .custom-button:hover {
