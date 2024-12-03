@@ -242,3 +242,189 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setMapCenterByUserLocation(); // 사용자 위치를 기준으로 지도 초기화
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const buttons = document.querySelectorAll(".sidebar-btn"); // 모든 사이드바 버튼
+    const door = document.querySelector(".door"); // 도어 요소
+    const sidebar = document.querySelector(".sidebar"); // 사이드바 요소
+
+    if (!door) {
+        console.error("도어 요소를 찾을 수 없습니다.");
+        return;
+    }
+
+    if (!sidebar) {
+        console.error("사이드바 요소를 찾을 수 없습니다.");
+        return;
+    }
+
+    let isOpen = false; // 도어 상태 변수
+
+    // 도어 콘텐츠 업데이트 함수
+    function updateDoorContent(content) {
+        door.innerHTML = content; // 도어 내부 HTML 업데이트
+    }
+
+    // 도어 열기
+    function openDoor() {
+        const sidebarWidth = sidebar.offsetWidth; // 사이드바 너비 계산
+        door.style.transform = `translateX(${sidebarWidth}px)`; // 도어 왼쪽 끝을 사이드바 오른쪽 끝에 맞춤
+        door.classList.add("open");
+        isOpen = true;
+    }
+
+    // 도어 닫기
+    function closeDoor() {
+        door.style.transform = "translateX(-100%)"; // 도어를 화면 왼쪽으로 숨김
+        door.classList.remove("open");
+        door.innerHTML = ""; // 도어 내용 제거
+        isOpen = false;
+    }
+
+    // 각 버튼의 클릭 이벤트 처리
+    buttons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault(); // 기본 동작 방지
+            const buttonAltText = button.querySelector("img")?.alt; // 버튼의 alt 텍스트 확인
+
+            if (isOpen) {
+                // 도어가 열려 있으면 닫기
+                closeDoor();
+            } else {
+                // 도어 열기 및 콘텐츠 업데이트
+                switch (buttonAltText) {
+                    case "홈":
+                        updateDoorContent(`
+        <link rel="stylesheet" href="/css/search.css">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="search-input" class="search-input" placeholder="검색어를 입력하세요">
+                <button id="search-button" class="search-button">🔍</button>
+            </div>
+            <div class="button-group">
+                <button class="custom-button">카페</button>
+                <button class="custom-button">도서관</button>
+            </div>
+        </div>
+    `);
+                        break;
+
+                    case "로그인":
+                        updateDoorContent(`
+                          <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="service-name">로그인</h1>
+        <form class="login-form">
+            <input type="text" class="input-field" placeholder="아이디" required>
+            <input type="password" class="input-field" placeholder="비밀번호" required>
+            <div class="button-group">
+                <button type="button" class="signup-button">회원가입</button>
+                <button type="submit" class="login-button">로그인</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+                        `);
+                        break;
+
+                    case "경로 탐색":
+                        updateDoorContent(`
+                            <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경로 탐색</title>
+
+    <!-- Bootstrap 및 지도 스타일 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/map.css">
+
+    <!-- JavaScript 변수 설정 -->
+    <script>
+        const kakaoJsKey = "{{kakaoJsKey}}";  // 카카오 JavaScript API 키
+        const kakaoRestKey = "{{kakaoRestKey}}";  // 카카오 REST API 키
+        const isLoggedIn = {{isLoggedIn}};  // 로그인 여부
+    </script>
+
+    <!-- 카카오 지도 API -->
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey={{kakaoJsKey}}&libraries=services,drawing"></script>
+</head>
+<body>
+<div class="container my-4">
+    <!-- 지도 영역 -->
+    <div class="map-container mb-4">
+        <div id="map" class="map"></div>
+    </div>
+
+    <!-- 경로 설정 폼 -->
+    <div class="form-container">
+        <div class="mb-3">
+            <label for="start-location" class="form-label">출발지</label>
+            <input type="text" id="start-location" class="form-control" placeholder="출발지를 입력하거나 마커를 선택하세요">
+        </div>
+        <div class="mb-3">
+            <label for="end-location" class="form-label">도착지</label>
+            <input type="text" id="end-location" class="form-control" placeholder="도착지를 입력하거나 마커를 선택하세요">
+        </div>
+    </div>
+
+    <div class="buttons-container">
+        <button class="btn btn-primary" onclick="calculateRoute()">경로 탐색</button>
+        <button class="btn btn-secondary" onclick="resetMap()">초기화</button>
+    </div>
+
+</div>
+
+<!-- JavaScript -->
+<script src="/js/navigation.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+                        `);
+                        break;
+
+                    case "평점순":
+                        updateDoorContent(`
+
+
+
+        <iframe src="/reviews/list" style="width: 100%; height: 100%; border: none;"></iframe>
+    
+
+                        `);
+                        break;
+
+                    case "마이페이지":
+                        updateDoorContent(`
+                        case "마이페이지":
+  
+        <iframe src="/users/mypage" style="width: 100%; height: 100%; border: none;"></iframe>
+
+                            
+                        `);
+                        break;
+
+                    default:
+                        updateDoorContent(`<p>${buttonAltText} 기능은 준비 중입니다.</p>`);
+                        break;
+                }
+                openDoor();
+            }
+        });
+    });
+});
+

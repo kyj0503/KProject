@@ -1,39 +1,103 @@
+/* 초기화 */
 html,
 body {
     height: 100%;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* 바탕색 흰색으로 고정 */
+    overflow: hidden;
 }
 
-.map-container {
+/* 레이아웃 */
+.layout {
+    display: flex; /* 사이드바와 지도 영역을 가로로 배치 */
+    height: 100%;
     width: 100%;
-    height: 75vh; /* 지도 높이 */
-    border: 1px solid #ccc;
 }
 
-.form-container {
-    margin-top: 20px;
+/* 사이드바 스타일 */
+.sidebar {
+    width: 100px; /* 사이드바 너비 */
+    background-color: #f5f5f5; /* 연한 회색 */
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 2; /* 사이드바가 지도 위에 표시 */
+    height: 100%; /* 화면 전체 높이 */
+}
+
+.sidebar-btn {
+    display: flex; /* 버튼 내부 요소를 정렬 */
+    flex-direction: column; /* 이미지와 텍스트를 세로로 배치 */
+    justify-content: center; /* 가운데 정렬 */
+    align-items: center;
+    width: 80px;
+    height: 100px; /* 버튼 높이를 더 여유롭게 */
+    margin: 10px 0;
+    background-color: #004494; /* 파란색 배경 */
+    color: white; /* 흰색 텍스트 */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.sidebar-btn img {
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    margin-bottom: 5px; /* 이미지와 텍스트 사이 간격 */
+}
+
+.sidebar-btn span {
+    font-size: 14px; /* 텍스트 크기 */
+    line-height: 1.2; /* 텍스트 간격 */
+}
+
+.sidebar-btn:hover {
+    background-color: #5dade2; /* 밝은 파란색 */
+}
+
+/* 로고 버튼 (1번) */
+.sidebar-btn.logo-btn {
+    background-color: #f5f5f5; /* 로고는 배경과 동일한 색 */
+    border: 1px solid #ccc; /* 구분을 위한 테두리 */
+}
+
+/* 지도 컨테이너 */
+.map-container {
+    flex: 1; /* 사이드바를 제외한 나머지 공간을 차지 */
+    position: relative;
+    z-index: 0; /* 지도는 기본적으로 가장 뒤에 위치 */
 }
 
 .map {
     width: 100%;
     height: 100%;
-    border: 1px solid #000;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.buttons-container {
-    max-width: 800px;
-    margin: 20px auto;
+/* 도어 스타일 */
+.door {
+    position: fixed;
+    top: 0;
+    left: 0; /* 기본 위치는 화면 왼쪽 */
+    width: 450px; /* 도어 너비 */
+    height: 100%;
+    background-color: #ffffff; /* 도어 배경색 */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* 그림자 */
+    overflow-y: auto; /* 콘텐츠 넘칠 경우 스크롤 */
+    transition: transform 0.5s ease; /* 부드러운 애니메이션 */
+    z-index: 2; /* 지도 위에 위치 */
+    transform: translateX(-100%); /* 닫힌 상태에서 화면 왼쪽으로 숨김 */
 }
 
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-.buttons button {
-    min-width: 150px;
-    height: 40px;
+.door.open {
+    transform: translateX(100px); /* 열릴 때 사이드바 오른쪽 끝과 도어 왼쪽 끝을 맞춤 */
 }
